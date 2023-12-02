@@ -1,1 +1,1 @@
-p $<.sum{|l|[?r,?g,?b].map{|x|l.scan(eval("/\\d+(?= #{x})/")).map(&:to_i).max}.inject(:*)}
+p $<.sum{|l|%w{r g b}.map{l.scan(eval("/\\d+(?= #{_1})/")).map(&:to_i).max}.inject(:*)}
