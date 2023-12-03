@@ -1,4 +1,4 @@
-a=$<.map{|x|x}
+a=$<.map{_1}
 g=0
 N=a.map{|l|i= ~g;m=!1;l.chars.map{g+=1 if m!=(m=_1=~/\d/)&&m;m ?[l.scan(/\d+/).map(&:to_i)[g+i],g+i]:0}}
 h=a.size-1
