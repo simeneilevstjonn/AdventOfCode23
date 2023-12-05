@@ -29,14 +29,6 @@ def bigRangeToRanges(lo, length, maps)
 
     return srcranges + destranges
 end
-ranges = s.each_slice(2).to_a
-
-for map in m do
-    nr = []
-    for lo, le in ranges do
-        nr += bigRangeToRanges(lo, le, map)
-    end
-    ranges = nr
-end
-
-p ranges.min{_1[0] <=> _2[0]}[0]
+r=s.each_slice(2).to_a
+m.map{|m|r=r.flat_map{bigRangeToRanges(_1,_2,m)}}
+p r.min[0]
