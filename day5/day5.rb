@@ -1,4 +1,4 @@
-s,*m=`cat`.split("\n\n").map{_1.scan(/\d+/).map(&:to_i)}
+s,*M=`cat`.split("\n\n").map{_1.scan(/\d+/).map(&:to_i)}
 def bigRangeToRanges(lo, length, maps)
     srcranges = [[lo, length]]
     destranges = []
@@ -30,5 +30,5 @@ def bigRangeToRanges(lo, length, maps)
     return srcranges + destranges
 end
 r=s.each_slice(2).to_a
-m.map{|m|r=r.flat_map{bigRangeToRanges(_1,_2,m)}}
+M.map{|m|r=r.flat_map{bigRangeToRanges(_1,_2,m)}}
 p r.min[0]
