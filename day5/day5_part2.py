@@ -41,8 +41,10 @@ def bigRangeToRanges(lo, length, maps):
                 destranges.append([_map(src, [dest, src, length]), h - src])
                 if src - l > 0:
                     nsr.append([l, src - l])
+            else:
+                nsr.append([l, le])
 
-        destranges = nsr
+        srcranges = nsr
     
     return srcranges + destranges
                 
