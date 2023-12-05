@@ -1,12 +1,4 @@
 s,*m=`cat`.split("\n\n").map{_1.scan(/\d+/).map(&:to_i)}
-def _map(value, range)
-    dest, src, length = range
-    if src <= value &&value< src + length
-        return dest + value - src
-    end
-    return value
-end
-
 def bigRangeToRanges(lo, length, maps)
     srcranges = [[lo, length]]
     destranges = []
@@ -17,14 +9,14 @@ def bigRangeToRanges(lo, length, maps)
             h = le + l
 
             if (src <= l && l < length + src) and (src <= h - 1 && h - 1< length + src)
-                destranges.append([_map(l, [dest, src, length]), le])
+                destranges.append([l + dest - src, le])
             elsif (src <= l && l< length + src)
-                destranges.append([_map(l, [dest, src, length]), length + src - l])
+                destranges.append([l + dest - src, length + src - l])
                 if h - length - src > 0
                     nsr.append([length + src, h - length - src])
                 end
             elsif (src <= h && h< length + src)
-                destranges.append([_map(src, [dest, src, length]), h - src])
+                destranges.append([dest, h - src])
                 if src - l > 0
                     nsr.append([l, src - l])
                 end
