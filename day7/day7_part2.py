@@ -7,16 +7,26 @@ class Hand:
         self.hand, bid = row.split()
         self.bid = int(bid)
 
-    def _type(self, hypval):
+    def type(self):
         occ = {}
 
-        for c in hypval:
+        j = 0
+        for c in self.hand:
+            if c == "J":
+                j += 1
+                continue
             if c not in occ:
                 occ[c] = 1
             else:
                 occ[c] += 1
 
         cnts = sorted(list(occ.values()))
+        if len(cnts) == 0:
+            cnts = [j]
+            occ["J"] = 5
+        else:
+            cnts[-1] += j
+
 
         if len(occ) == 1:
             # 5
@@ -50,22 +60,6 @@ class Hand:
             # 1, 1, 1, 1, 1
             # High card
             return 0
-    
-    def rangeOrSingleLetter(self, idx):
-        if self.hand[idx] != "J":
-            return [self.hand[idx]]
-        return cardorder[1:]
-        
-    def type(self):
-        mval = 0
-        for a in self.rangeOrSingleLetter(0):
-            for b in self.rangeOrSingleLetter(1):
-                for c in self.rangeOrSingleLetter(2):
-                    for d in self.rangeOrSingleLetter(3):
-                        for e in self.rangeOrSingleLetter(4):
-                            mval = max(mval, self._type("".join([a,b,c,d,e])))
-        return mval
-
 
     def sortstring(self):
         handstr = [chr(0x30 + cardorder.index(x)) for x in self.hand]
