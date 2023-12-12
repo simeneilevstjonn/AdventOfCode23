@@ -18,7 +18,7 @@ for row in data:
         if x == "?":
             qmarkpos.append(i)
 
-    for i in range(1 << len(smut)):
+    for i in range(1 << len(qmarkpos)):
         for j, idx in enumerate(qmarkpos):
             if i & (1 << j):
                 smut[idx] = "#"
