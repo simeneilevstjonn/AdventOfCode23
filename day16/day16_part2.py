@@ -55,14 +55,14 @@ def lightTrace(y, x, dir):
         lightTrace(y - 1, x, Direction.Up)
 
     else:
-            if dir == Direction.Left:
-                lightTrace(y, x - 1, dir)
-            elif dir == Direction.Right:
-                lightTrace(y, x + 1, dir)
-            elif dir == Direction.Up:
-                lightTrace(y - 1, x, dir)
-            elif dir == Direction.Down:
-                lightTrace(y + 1, x, dir)
+        if dir == Direction.Left:
+            lightTrace(y, x - 1, dir)
+        elif dir == Direction.Right:
+            lightTrace(y, x + 1, dir)
+        elif dir == Direction.Up:
+            lightTrace(y - 1, x, dir)
+        elif dir == Direction.Down:
+            lightTrace(y + 1, x, dir)
 
 
 def cntTrace(y, x, dir):
