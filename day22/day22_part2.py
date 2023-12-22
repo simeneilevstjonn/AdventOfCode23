@@ -72,18 +72,13 @@ class Brick:
         for z, y, x in self.allNodes():
             grid[z][y][x] = None
 
-    def land(self, notby=None):
-        moved = False
-        while not self.isSupported(notby=notby):
-            if not moved:
-                self.unset()
-            moved = True
+    def land(self):
+        while not self.isSupported():
             self.az -= 1
             self.bz -= 1
         
-        if moved:
-            self.commit()
-        return moved
+        self.commit()
+
 
     def topNodes(self):
         if self.type == BrickType.Cube:
@@ -143,13 +138,6 @@ bricks.sort(key = lambda x : min(x.az, x.bz))
 for brick in bricks:
     brick.land()
 
-bricks.sort(key = lambda x : min(x.az, x.bz))
-
-# print(sum(not brick.wouldBreakSupportIfDisintegrated() for brick in bricks))
-
-def deepCopyOfGrid():
-    return [[row[::] for row in layer] for layer in grid]
-
 sumFallBricks = 0
 
 for brick in bricks:
@@ -157,13 +145,6 @@ for brick in bricks:
 
 for brick in bricks:
     if brick.wouldBreakSupportIfDisintegrated():
-        # gridBackup = deepCopyOfGrid()
-        
-        # for b in bricks:
-        #     if b != brick:
-        #         sumFallBricks += b.land(brick)
-
-        # grid = gridBackup
         for b in bricks:
             if b != brick:
                 sumFallBricks += b.onlySupportedBy(brick)
