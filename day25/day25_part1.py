@@ -1,5 +1,4 @@
 import networkx as nx
-import matplotlib.pyplot as plt
 
 data = open("day25/data25.txt").read().strip().split("\n")
 
