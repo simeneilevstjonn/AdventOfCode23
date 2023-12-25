@@ -1,6 +1,6 @@
 import networkx as nx
 G=nx.Graph()
-for row in open("d").readlines():
+for row in open("d"):
  s,d=row.split(": ")
  for dest in d.split():
   G.add_edge(s,dest)
