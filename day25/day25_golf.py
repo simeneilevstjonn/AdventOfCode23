@@ -1,9 +1,9 @@
 import networkx as n
 G=n.Graph()
-for row in open("d"):
- s,d=row.split(": ")
- for dest in d.split():
-  G.add_edge(s,dest)
+for r in open("d"):
+ s,D=r.split(": ")
+ for d in D.split():
+  G.add_edge(s,d)
 for u,v in n.minimum_edge_cut(G):
  G.remove_edge(u,v)
 a=1
